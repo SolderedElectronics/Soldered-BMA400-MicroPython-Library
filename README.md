@@ -1,25 +1,28 @@
-# Soldered NAZIV PROIZVODA MicroPython Library
+# Soldered BMA400 Accelerometer MicroPython Library
 
-| ![Product name](https://upload.wikimedia.org/wikipedia/commons/8/8f/Example_image.svg) |
-| :------------------------------------------------------------------------------------: |
-|                      [NAZIV PROIZVODA](https://www.solde.red/SKU)                      |
+| ![Soldered BMA400 Accelerometer breakout](TODO_PRODUCT_IMAGE_URL) |
+| :-----------------------------------------------------------------------------------------------: |
+|                          [Soldered BMA400 Accelerometer breakout](https://www.solde.red/333419)                     |
 
-OPIS PROIZVODA + LINK NA [Qwiic ecosystem](https://soldered.com/collections/qwiic-ecosystem).
+<!-- TODO: product not released yet (SKU 333419), swap the image URL above once the listing is live -->
 
-### Using the template
+Breakout board for the Bosch BMA400 ultra-low-power triaxial accelerometer, drawing as little as 14 µA in normal mode. It measures 3-axis acceleration across four selectable ranges (±2g to ±16g) at up to 800 Hz, and includes on-chip step counting, tap detection, orientation and activity-change recognition, and a FIFO buffer. The board communicates over I2C only and is part of the [Qwiic ecosystem](https://soldered.com/collections/qwiic-ecosystem).
 
-Before publishing a new library make sure to update:
+### Quick start
 
-- `NAZIV PROIZVODA`, `OPIS PROIZVODA`, product image, SKU link, and the "Original source" line in this README
-- if there was no original soruce remove that section
-- update `package.json` with every filename and examples
-- add git tags and update git description
+```python
+from bma400 import BMA400, BMA400_OK
+import time
 
-Also make sure to add examples.
+sensor = BMA400()  # Or BMA400(address=BMA400_I2C_ADDRESS_SDO_HIGH)
 
-**Remove this section of README after everything is done!**
+while True:
+    if sensor.get_sensor_data() == BMA400_OK:
+        print(sensor.data.accel_x, sensor.data.accel_y, sensor.data.accel_z)
+    time.sleep(1)
+```
 
-For uploading to mim you need to login using the soldered account and submit the repo.
+Have a look at the scripts in `Examples/` for basic readings, motion detection and the built-in step counter.
 
 ### How to install
 
@@ -30,23 +33,31 @@ or
 After [**installing the mpremote package**](https://docs.micropython.org/en/latest/reference/mpremote.html), install the library on your board using the following command:
 
 ```sh
-  mpremote mip install github:SolderedElectronics/[REPO_NAME]
+  mpremote mip install github:SolderedElectronics/Soldered-BMA400-MicroPython-Library
 ```
 Or, if you're running a Windows OS:
 
 ```sh
-  python -m mpremote mip install github:SolderedElectronics/[REPO_NAME]
+  python -m mpremote mip install github:SolderedElectronics/Soldered-BMA400-MicroPython-Library
 ```
 
 ### Repository Contents
 
-- **[nazivproizvoda].py** - MicroPython driver class
+- **bma400.py** - MicroPython driver class, I2C only
 - **package.json** - mip install manifest
-- **/Examples** - examples for using the library
+- **/Examples** - examples for basic readings, motion detection and the built-in step counter
+
+### Examples
+
+| Example | What it does |
+| :------ | :----------- |
+| `bma400-basicReadings.py` | Reads X, Y, Z acceleration in a loop, the mode most applications want |
+| `bma400-motionDetection.py` | Configures the generic interrupt feature and reacts to it on a hardware interrupt pin |
+| `bma400-stepCounter.py` | Uses the built-in step counter and activity type detection (running/walking/still) |
 
 ### Hardware design
 
-You can find hardware design for this board in _NAZIV PROIZVODA_ hardware repository.
+You can find hardware design for this board in _Soldered BMA400 Accelerometer breakout_ hardware repository.
 
 ### Documentation
 
@@ -64,7 +75,7 @@ At Soldered, we design and manufacture a wide selection of electronic products t
 
 ### Original source
 
-This library is possible thanks to original [[LIBRARY_NAME]]([LIBRARY_LINK]) library. Thank you, [AUTHOR].
+This library is a port of the [Soldered BMA400 Arduino library](https://github.com/SolderedElectronics/Soldered-BMA400-Arduino-Library), which wraps [SparkFun's BMA400 Arduino Library](https://github.com/sparkfun/SparkFun_BMA400_Arduino_Library), itself built on the [BMA400 Sensor API](https://github.com/BoschSensortec/BMA400-Sensor-API) by Bosch Sensortec. Thank you, SparkFun and Bosch Sensortec.
 
 ### Open-source license
 

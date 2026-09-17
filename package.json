@@ -1,14 +1,22 @@
 {
-  "urls": [
-    [
-      "template.py",
-      "github:SolderedElectronics/[REPO_NAME]/template.py"
+    "urls": [
+        [
+            "bma400.py",
+            "github:SolderedElectronics/Soldered-BMA400-MicroPython-Library/bma400.py"
+        ],
+        [
+            "Examples/bma400-basicReadings.py",
+            "github:SolderedElectronics/Soldered-BMA400-MicroPython-Library/Examples/bma400-basicReadings.py"
+        ],
+        [
+            "Examples/bma400-motionDetection.py",
+            "github:SolderedElectronics/Soldered-BMA400-MicroPython-Library/Examples/bma400-motionDetection.py"
+        ],
+        [
+            "Examples/bma400-stepCounter.py",
+            "github:SolderedElectronics/Soldered-BMA400-MicroPython-Library/Examples/bma400-stepCounter.py"
+        ]
     ],
-    [
-      "Examples/template-example.py",
-      "github:SolderedElectronics/[REPO_NAME]/Examples/template-example.py"
-    ]
-  ],
-  "deps": [],
-  "version": "1.0"
+    "deps": [],
+    "version": "1.0"
 }
